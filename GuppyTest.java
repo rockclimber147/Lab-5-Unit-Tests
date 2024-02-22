@@ -496,4 +496,37 @@ class GuppyTest {
         testGuppy.changeHealthCoefficient(-0.05);
         assertEquals(0.7, testGuppy.getHealthCoefficient(), 0.001);
     }
+
+    @Test
+    public void spawnIsNotFemaleReturnsNull() {
+        Guppy fry = new Guppy("a",
+                "b",
+                10,
+                false,
+                0,
+                Guppy.DEFAULT_HEALTH_COEFFICIENT);
+        assertNull(fry.spawn());
+    }
+
+    @Test
+    public void spawnYoungerThanMinimumAgeReturnsNull() {
+        Guppy fry = new Guppy("a",
+                "b",
+                0,
+                true,
+                0,
+                Guppy.DEFAULT_HEALTH_COEFFICIENT);
+        assertNull(fry.spawn());
+    }
+
+    @Test
+    public void spawnIsNotFemaleAndYoungerThanMinimumAgeReturnsNull() {
+        Guppy fry = new Guppy("a",
+                "b",
+                0,
+                false,
+                0,
+                Guppy.DEFAULT_HEALTH_COEFFICIENT);
+        assertNull(fry.spawn());
+    }
 }

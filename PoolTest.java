@@ -100,7 +100,7 @@ public class PoolTest {
 
     @Test
     public void multiParamPoolIsSetToCorrectValues() {
-        assertTrue(testPool.getName().equals("testPool"));
+        assertTrue(testPool.getName().equals("Testpool"));
         assertEquals(1000.0, testPool.getVolumeLitres(), 0.0);
         assertEquals(Pool.DEFAULT_POOL_TEMP_CELSIUS, testPool.getTemperatureCelsius(), 0.0);
         assertEquals(Pool.NEUTRAL_PH, testPool.getPH(), 0.0);
@@ -141,7 +141,7 @@ public class PoolTest {
                 Pool.DEFAULT_POOL_TEMP_CELSIUS,
                 Pool.NEUTRAL_PH,
                 Pool.DEFAULT_NUTRIENT_COEFFICIENT);
-        assertTrue(newPool.getName().equals("testPool"));
+        assertTrue(newPool.getName().equals("Testpool"));
     }
 
     @Test
@@ -226,7 +226,7 @@ public class PoolTest {
     @Test
     public void nameAccessorReturnsCorrectName() {
         assertTrue(defaultPool.getName().equals(Pool.DEFAULT_POOL_NAME));
-        assertTrue(testPool.getName().equals("testPool"));
+        assertTrue(testPool.getName().equals("Testpool"));
     }
 
     @Test
@@ -322,6 +322,34 @@ public class PoolTest {
         assertEquals(Pool.MINIMUM_POOL_TEMP_CELSIUS, testPool.getTemperatureCelsius(), 0.0);
     }
 
+    @Test
+    public void addFishToFishInPool() {
+        Guppy guppy = new Guppy();
+        testPool.addFish(guppy);
+        assertTrue(testPool.getPopulation() == 1);
+    }
 
+    @Test
+    public void applyNutrientCoefficient(){
+
+    }
+
+    @Test
+    public void removeDeadFish() {
+        Guppy guppy = new Guppy();
+        testPool.addFish(guppy);
+        guppy.setIsAlive(false);
+        assertTrue(testPool.removeDeadFish() == 1);
+    }
+
+    @Test
+    public void getVolumeRequiredInLitres() {
+        Guppy guppy = new Guppy();
+        Swordtail swordtail = new Swordtail();
+        testPool.addFish(guppy);
+        testPool.addFish(swordtail);
+        assertEquals((Swordtail.MINIMUM_WATER_VOLUME_ML + Guppy.MINIMUM_WATER_VOLUME_ML)
+                / Pool.ML_TO_LITRE_CONVERSION, testPool.getFishVolumeRequirementInLitres());
+    }
 
 }
