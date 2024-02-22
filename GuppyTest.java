@@ -529,4 +529,27 @@ class GuppyTest {
                 Guppy.DEFAULT_HEALTH_COEFFICIENT);
         assertNull(fry.spawn());
     }
+
+    @Test
+    public void spawnConstructsFryInLegalRange() {
+        testGuppy.setAgeInWeeks(Guppy.MATURE_FISH_AGE_IN_WEEKS);
+        ArrayList<Fish> listOfFry;
+        // verify that listOfFry has fry in it
+        do {
+            listOfFry = testGuppy.spawn();
+        } while (listOfFry == null || listOfFry.isEmpty());
+        assertTrue(listOfFry.size() <= 100);
+
+        final double expectedHealthCoefficient = (1 + testGuppy.getHealthCoefficient()) / 2.0;
+        final int expectedGenerationNumber = testGuppy.getGenerationNumber() + 1;
+        // The only uncertain value is isFemale, everything else is determinable
+        for (Fish fry : listOfFry) {
+            assertEquals(testGuppy.getGenus(), fry.getGenus());
+            assertEquals(testGuppy.getSpecies(), fry.getSpecies());
+            assertEquals(0, fry.getAgeInWeeks());
+            assertEquals(expectedGenerationNumber, fry.getGenerationNumber());
+            assertEquals(expectedHealthCoefficient, fry.getHealthCoefficient());
+            assertTrue(fry.getIsAlive());
+        }
+    }
 }
