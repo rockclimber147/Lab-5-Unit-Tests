@@ -372,4 +372,26 @@ public class PoolTest {
         assertEquals(6,testPool.getAverageAgeInWeeks());
     }
 
+        @Test
+    public void getAverageHealthCoefficient() {
+        Guppy guppy = new Guppy(  "Poecilia",
+                "reticulata",
+                8,
+                true,
+                3,
+                1.0);
+
+        Swordtail swordtail = new Swordtail(  "Xiphophorus",
+                "hellerii",
+                4,
+                true,
+                3,
+                0.60);
+
+        testPool.addFish(guppy);
+        testPool.addFish(swordtail);
+
+        assertEquals(0.8, testPool.getAverageHealthCoefficient());
+    }
+
 }
