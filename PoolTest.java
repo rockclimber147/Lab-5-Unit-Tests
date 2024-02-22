@@ -394,4 +394,26 @@ public class PoolTest {
         assertEquals(0.8, testPool.getAverageHealthCoefficient());
     }
 
+        @Test
+    public void getFemalePercentageHalf() {
+        Guppy guppy = new Guppy(  "Poecilia",
+                "reticulata",
+                8,
+                true,
+                3,
+                1.0);
+
+        Swordtail swordtail = new Swordtail(  "Xiphophorus",
+                "hellerii",
+                4,
+                false,
+                3,
+                0.60);
+
+        testPool.addFish(guppy);
+        testPool.addFish(swordtail);
+
+        assertEquals(0.5, testPool.getFemalePercentage());
+    }
+
 }
