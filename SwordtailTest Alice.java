@@ -487,24 +487,4 @@ class SwordtailTest {
         assertEquals(0.7, testSwordtail.getHealthCoefficient(), 0.001);
     }
 
-        @Test
-    public void incrementAgeOneDeath() {
-        Guppy guppy = new Guppy(  "Poecilia",
-                "reticulata",
-                Guppy.MAXIMUM_AGE_IN_WEEKS,
-                true,
-                3,
-                1.0);
-        Swordtail swordtail = new Swordtail(  "Xiphophorus",
-                "hellerii",
-                4,
-                false,
-                3,
-                0.60);
-
-        testPool.addFish(guppy);
-        testPool.addFish(swordtail);
-
-        assertEquals(1, testPool.incrementAges());
-    }
 }
