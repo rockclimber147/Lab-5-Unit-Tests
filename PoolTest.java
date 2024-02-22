@@ -325,10 +325,15 @@ public class PoolTest {
     }
 
     @Test
-    public void addFishToFishInPool() {
+    public void addFishToFishInPoolTrue() {
         Guppy guppy = new Guppy();
-        testPool.addFish(guppy);
-        assertTrue(testPool.getPopulation() == 1);
+        assertTrue(testPool.addFish(guppy));
+    }
+
+    @Test
+    public void addFishToFishInPoolFalse() {
+        Guppy guppy = null;
+        assertFalse(testPool.addFish(guppy));
     }
 
     @Test
@@ -417,5 +422,7 @@ public class PoolTest {
 
         assertEquals(0.5, testPool.getFemalePercentage());
     }
+
+
 
 }
