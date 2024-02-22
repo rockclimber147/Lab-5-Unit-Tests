@@ -1,5 +1,5 @@
 
-
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -146,11 +146,13 @@ public class PoolTest {
 
     @Test
     public void createExceptionWithWhitespaceName() {
-        Pool newPool = new Pool("           ",
-                1000.0,
-                Pool.DEFAULT_POOL_TEMP_CELSIUS,
-                Pool.NEUTRAL_PH,
-                Pool.DEFAULT_NUTRIENT_COEFFICIENT);
+        assertThrows(IllegalArgumentException.class, () -> {
+            Pool newPool = new Pool("           ",
+                    1000.0,
+                    Pool.DEFAULT_POOL_TEMP_CELSIUS,
+                    Pool.NEUTRAL_PH,
+                    Pool.DEFAULT_NUTRIENT_COEFFICIENT);
+        });
     }
 
     @Test
@@ -352,7 +354,7 @@ public class PoolTest {
                 / Pool.ML_TO_LITRE_CONVERSION, testPool.getFishVolumeRequirementInLitres());
     }
 
-        @Test
+    @Test
     public void getAverageAgeInWeeks() {
         Guppy guppy = new Guppy(  "Poecilia",
                 "reticulata",
@@ -372,7 +374,7 @@ public class PoolTest {
         assertEquals(6,testPool.getAverageAgeInWeeks());
     }
 
-        @Test
+    @Test
     public void getAverageHealthCoefficient() {
         Guppy guppy = new Guppy(  "Poecilia",
                 "reticulata",
@@ -394,7 +396,7 @@ public class PoolTest {
         assertEquals(0.8, testPool.getAverageHealthCoefficient());
     }
 
-        @Test
+    @Test
     public void getFemalePercentageHalf() {
         Guppy guppy = new Guppy(  "Poecilia",
                 "reticulata",
