@@ -163,7 +163,8 @@ class GuppyTest {
     }
 
     @Test
-    public void nullGenusReplacedWithDefaultGenus() {
+    public void nullGenusThrowsException() {
+        assertThrows(IllegalArgumentException.class, () -> {
         Guppy fry = new Guppy(null,
                 "a",
                 0,
@@ -171,42 +172,43 @@ class GuppyTest {
                 0 ,
                 0.5);
         assertTrue(fry.getGenus().equals("Poecilia"));
+        })
     }
 
     @Test
-    public void emptyGenusReplacedWithDefaultGenus() {
+    public void emptyGenusThrowsException() {
+        assertThrows(IllegalArgumentException.class, () -> {
         Guppy fry = new Guppy("    ",
                 "a",
                 0,
                 true,
                 0 ,
                 0.5);
-        assertTrue(fry.getGenus().equals("Poecilia"));
-
+        })
     }
 
     @Test
-    public void nullSpeciesReplacedWithDefaultSpecies() {
-        Guppy fry = new Guppy("a",
-                null,
-                0,
-                true,
-                0 ,
-                0.5);
-        assertTrue(fry.getSpecies().equals("reticulata"));
-
+    public void nullSpeciesThrowsException() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            Guppy fry = new Guppy("a",
+                    null,
+                    0,
+                    true,
+                    0 ,
+                    0.5);
+        })
     }
 
     @Test
-    public void emptySpeciesReplacedWithDefaultSpecies() {
+    public void emptySpeciesThrowsException() {
+        assertThrows(IllegalExceptionArguments.class, () -> {
         Guppy fry = new Guppy("a",
                 "    ",
                 0,
                 true,
                 0 ,
                 0.5);
-        assertTrue(fry.getSpecies().equals("reticulata"));
-
+        })
     }
 
     @Test
