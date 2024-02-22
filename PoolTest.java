@@ -424,5 +424,55 @@ public class PoolTest {
     }
 
 
+        @Test
+    public void getMedianAgeOdd() {
+        Guppy guppy = new Guppy(  "Poecilia",
+                "reticulata",
+                8,
+                true,
+                3,
+                1.0);
+        Swordtail swordtail = new Swordtail(  "Xiphophorus",
+                "hellerii",
+                4,
+                false,
+                3,
+                0.60);
+        Swordtail alsoSwordtail = new Swordtail(  "Xiphophorus",
+                "hellerii",
+                7,
+                false,
+                3,
+                0.60);
+
+        testPool.addFish(guppy);
+        testPool.addFish(swordtail);
+        testPool.addFish(alsoSwordtail);
+
+        assertEquals(7, testPool.getMedianAgeInWeeks());
+    }
+
+    @Test
+    public void getMedianAgeEven() {
+        Guppy guppy = new Guppy(  "Poecilia",
+                "reticulata",
+                8,
+                true,
+                3,
+                1.0);
+        Swordtail swordtail = new Swordtail(  "Xiphophorus",
+                "hellerii",
+                4,
+                false,
+                3,
+                0.60);
+
+        testPool.addFish(guppy);
+        testPool.addFish(swordtail);
+
+        assertEquals(6, testPool.getMedianAgeInWeeks());
+    }
+
+
 
 }
