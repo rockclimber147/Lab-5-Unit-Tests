@@ -166,49 +166,54 @@ class SwordtailTest {
 
     @Test
     public void nullGenusReplacedWithDefaultGenus() {
+        assertThrows(IllegalArgumentException.class, () -> {
         Swordtail fry = new Swordtail(null,
                 "a",
                 0,
                 true,
                 0 ,
                 0.5);
-        assertTrue(fry.getGenus().equals("Xiphophorus"));
-    }
+
+    });
+        }
 
     @Test
     public void emptyGenusReplacedWithDefaultGenus() {
-        Swordtail fry = new Swordtail("    ",
-                "a",
-                0,
-                true,
-                0 ,
-                0.5);
-        assertTrue(fry.getGenus().equals("Xiphophorus"));
-
+        assertThrows(IllegalArgumentException.class, () -> {
+            Swordtail fry = new Swordtail("    ",
+                    "a",
+                    0,
+                    true,
+                    0,
+                    0.5);
+        });
     }
 
     @Test
     public void nullSpeciesReplacedWithDefaultSpecies() {
-        Swordtail fry = new Swordtail("a",
-                null,
-                0,
-                true,
-                0 ,
-                0.5);
-        assertTrue(fry.getSpecies().equals("hellerii"));
+            assertThrows(IllegalArgumentException.class, () -> {
+                Swordtail fry = new Swordtail("a",
+                        null,
+                        0,
+                        true,
+                        0,
+                        0.5);
+                assertTrue(fry.getSpecies().equals("hellerii"));
 
-    }
+            });
+        }
 
     @Test
     public void emptySpeciesReplacedWithDefaultSpecies() {
-        Swordtail fry = new Swordtail("a",
-                "    ",
-                0,
-                true,
-                0 ,
-                0.5);
-        assertTrue(fry.getSpecies().equals("hellerii"));
+        assertThrows(IllegalArgumentException.class, () -> {
+            Swordtail fry = new Swordtail("a",
+                    "    ",
+                    0,
+                    true,
+                    0,
+                    0.5);
 
+        });
     }
 
     @Test
@@ -471,15 +476,16 @@ class SwordtailTest {
 
     @Test
     public void SwordtailWithNullGenusAndSpecies() {
-        Swordtail fry = new Swordtail(null,
-                null,
-                0,
-                true,
-                0,
-                Swordtail.MINIMUM_HEALTH_COEFFICIENT - 1.0);
-        String actual = fry.getGenus();
-        String expected = Swordtail.DEFAULT_GENUS;
-        assertEquals(expected, actual);
+        assertThrows(IllegalArgumentException.class, () -> {
+            Swordtail fry = new Swordtail(null,
+                    null,
+                    0,
+                    true,
+                    0,
+                    Swordtail.MINIMUM_HEALTH_COEFFICIENT - 1.0);
+            String actual = fry.getGenus();
+            String expected = Swordtail.DEFAULT_GENUS;
+        });
     }
 
     @Test
