@@ -482,7 +482,7 @@ public class PoolTest {
     public void spawn(){
         if (testPool.getPopulation() == 0) {
             for (int i = testPool.getPopulation(); i < 100; i++) {
-                testPool.addFish(new Guppy());
+                testPool.addFish(new Guppy("new", "new", 10, true, 3, 0.75));
             }
         }
         assertTrue(testPool.spawn() > 0);
