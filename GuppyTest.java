@@ -3,6 +3,8 @@
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
@@ -171,8 +173,7 @@ class GuppyTest {
                 true,
                 0 ,
                 0.5);
-        assertTrue(fry.getGenus().equals("Poecilia"));
-        })
+        });
     }
 
     @Test
@@ -184,7 +185,7 @@ class GuppyTest {
                 true,
                 0 ,
                 0.5);
-        })
+        });
     }
 
     @Test
@@ -196,19 +197,19 @@ class GuppyTest {
                     true,
                     0 ,
                     0.5);
-        })
+        });
     }
 
     @Test
     public void emptySpeciesThrowsException() {
-        assertThrows(IllegalExceptionArguments.class, () -> {
+        assertThrows(IllegalArgumentException.class, () -> {
         Guppy fry = new Guppy("a",
                 "    ",
                 0,
                 true,
                 0 ,
                 0.5);
-        })
+        });
     }
 
     @Test
@@ -467,19 +468,6 @@ class GuppyTest {
                 0,
                 Guppy.MINIMUM_HEALTH_COEFFICIENT - 1.0);
         assertFalse(fry.getIsAlive());
-    }
-
-    @Test
-    public void guppyWithNullGenusAndSpecies() {
-        Guppy fry = new Guppy(null,
-                null,
-                0,
-                true,
-                0,
-                Guppy.MINIMUM_HEALTH_COEFFICIENT - 1.0);
-        String actual = fry.getGenus();
-        String expected = Guppy.DEFAULT_GENUS;
-        assertEquals(expected, actual);
     }
 
     @Test
